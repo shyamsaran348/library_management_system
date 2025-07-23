@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header>
+    <!-- Page Title -->
+    <h1 style="text-align: center; margin-top: 20px;">Borrow Book</h1>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
+            <li><a href="{{ url_for('add_user') }}">Add Member</a></li>
+            <li><a href="{{ url_for('user_list') }}">Member List</a></li>
+            <li><a href="{{ url_for('borrow_book') }}">Borrow Book</a></li>
+            <li><a href="{{ url_for('view_books') }}">View Books</a></li>
+            <li><a href="{{ url_for('return_book') }}">Return Book</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <!-- Borrow Book Form -->
+    <form method="POST" action="{{ url_for('borrow_book') }}">
+        <select name="borrowBookID" required>
+            <option value="" disabled selected>Select Book</option>
+            {% for book in books %}
+                <option value="{{ book['BookID'] }}">{{ book['Title'] }} (ISBN: {{ book['ISBN'] }})</option>
+            {% endfor %}
+        </select>
+        
+        <select name="borrowUserID" required>
+            <option value="" disabled selected>Select User</option>
+            {% for user in users %}
+                <option value="{{ user['UserID'] }}">{{ user['Name'] }} (Membership ID: {{ user['MembershipID'] }})</option>
+            {% endfor %}
+        </select>
+        
+        <input type="date" name="borrowDate" required>
+        <input type="date" name="returnDate" required>
+        <button type="submit">Borrow Book</button>
+    </form>
+
+</body>
+</html>

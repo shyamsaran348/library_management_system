@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+    <!-- Page Title -->
+    <h1 style="text-align: center; margin-top: 20px;">User List</h1>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
+            <li><a href="{{ url_for('add_user') }}">Add Member</a></li>
+            <li><a href="{{ url_for('user_list') }}">Member List</a></li>
+            <li><a href="{{ url_for('borrow_book') }}">Borrow Book</a></li>
+            <li><a href="{{ url_for('view_books') }}">View Books</a></li>
+            <li><a href="{{ url_for('return_book') }}">Return Book</a></li>
+        </ul>
+    </nav>
+</header>
+    <!-- User List Table -->
+    <main>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Membership ID</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user['UserID'] }}</td>
+                            <td>{{ user['Name'] }}</td>
+                            <td>{{ user['Email'] }}</td>
+                            <td>{{ user['MembershipID'] }}</td>
+                            <td>{{ user['Phone'] }}</td>
+                            <td>{{ user['Address'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

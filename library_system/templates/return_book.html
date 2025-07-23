@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+    <!-- Page Title -->
+    <h2 style="text-align: center; margin-top: 20px;">Return Book</h2>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
+            <li><a href="{{ url_for('add_user') }}">Add Member</a></li>
+            <li><a href="{{ url_for('user_list') }}">Member List</a></li>
+            <li><a href="{{ url_for('borrow_book') }}">Borrow Book</a></li>
+            <li><a href="{{ url_for('view_books') }}">View Books</a></li>
+            <li><a href="{{ url_for('return_book') }}">Return Book</a></li>
+        </ul>
+    </nav>
+</header>
+    <!-- Return Book Form -->
+    <form method="POST" action="{{ url_for('return_book') }}">
+        <label for="borrowing_id">Borrowing ID:</label>
+        <input type="text" id="borrowing_id" name="borrowing_id" required>
+
+        <label for="user_id">User ID:</label>
+        <input type="text" id="user_id" name="user_id" required>
+
+        <button type="submit">Return Book</button>
+    </form>
+</body>
+</html>
